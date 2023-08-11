@@ -32,7 +32,9 @@ router.post("/login", async (req, res) => {
       return res.status(400).json({ message: "Invalid password" });
     }
 
-    return res.status(200).json({ message: "Successfull" });
+    return res
+      .status(200)
+      .json({ message: "Successfull", _id: user._id.toString() });
   } catch (error) {
     res.status(500).json(error);
   }
