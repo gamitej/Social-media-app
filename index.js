@@ -38,7 +38,7 @@ app.use("/api/auth", authRoute);
 
 // error handling for unknown routes
 app.use((req, res) => {
-  res.status(404).json({ message: "404 - Not Found" });
+  res.status(404).json({ message: "404 - Wronge Route" });
 });
 
 app.listen(port, () => {
