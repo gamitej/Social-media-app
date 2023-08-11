@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 // encode data
 async function EncodeData(data) {
   const salt = await bcrypt.genSalt(10);
+  console.log("hi");
   const encodedData = await bcrypt.hash(data, salt);
   return encodedData;
 }
@@ -13,5 +14,7 @@ async function DecodeData(data, encodedData) {
   return result;
 }
 
-module.exports = EncodeData;
-module.exports = DecodeData;
+module.exports = {
+  EncodeData: EncodeData,
+  DecodeData: DecodeData,
+};

@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const User = require("../models/User");
-const EncodeData = require("../utils/func");
-const DecodeData = require("../utils/func");
+const { EncodeData, DecodeData } = require("../utils/func");
 
 // register
 router.post("/register", async (req, res) => {
