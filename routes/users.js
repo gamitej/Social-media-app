@@ -10,9 +10,21 @@ route.put("/:id", async (req, res) => {
 
     if (!user) return res.status(404).json({ message: "User not found" });
 
-    return res.status(200).json(user);
+    return res.status(200).json("Account updated");
   } catch (error) {
     res.status(500).json(error);
+  }
+});
+
+// delete user account
+route.delete("/:id", async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+
+    if (!user) return res.status(404).json({ message: "User not found" });
+    return res.status(200).json({ message: "Account deleted" });
+  } catch (error) {
+    return res.status(500).json({ message: error });
   }
 });
 

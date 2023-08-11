@@ -32,10 +32,15 @@ async function connectToMongoDb() {
 }
 connectToMongoDb();
 
-// routes
+// api routes
 app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
 
+// error handling for unknown routes
+app.use((req, res) => {
+  res.status(404).json({ message: "404 - Not Found" });
+});
+
 app.listen(port, () => {
-  console.log(`backend server running on - ${port}`);
+  console.log(`backend server running on port - ${port}`);
 });
