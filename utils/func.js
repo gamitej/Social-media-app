@@ -8,10 +8,10 @@ async function EncodeData(data) {
 }
 
 // check encoded data & data
-async function DecodeData(data, encodedData) {
+async function CompareEncodeData(data, encodedData) {
   const result = await bcrypt.compare(data, encodedData);
   return result;
 }
 
 module.exports = EncodeData;
-module.exports = DecodeData;
+module.exports = CompareEncodeData;
