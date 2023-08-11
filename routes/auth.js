@@ -1,11 +1,12 @@
 const router = require("express").Router();
 const User = require("../models/User");
+const EncodeData = require("../utils/func");
 
 // register
 router.post("/register", async (req, res) => {
   const newUser = new User({
     username: req.body.username,
-    password: req.body.password,
+    password: await EncodeData(req.body.password),
     email: req.body.email,
   });
 
