@@ -50,9 +50,9 @@ route.put("/:id/follow", async (req, res) => {
     if (userId === followUserId)
       return res.status(400).json({ message: "You can't follow yourself" });
 
-    if (!user.followers.includes(followUserId)) {
-      await user.updateOne({ $push: { followers: followUserId } });
-      await followUser.updateOne({ $push: { following: userId } });
+    if (!user.following.includes(followUserId)) {
+      await user.updateOne({ $push: { following: followUserId } });
+      await followUser.updateOne({ $push: { followers: userId } });
       return res.status(200).json({ message: "Followed successfully" });
     }
     return res.status(403).json({ message: "Already follow this user" });
