@@ -7,6 +7,7 @@ const helmet = require("helmet");
 // routes
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
+const postRoute = require("./routes/posts");
 
 dotenv.config();
 const app = express();
@@ -35,6 +36,7 @@ connectToMongoDb();
 // api routes
 app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
+app.use("/api/posts", postRoute);
 
 // error handling for unknown routes
 app.use((req, res) => {
