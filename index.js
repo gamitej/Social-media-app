@@ -2,8 +2,9 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
-const mongoose = require("mongoose");
 const helmet = require("helmet");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 // routes
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
@@ -14,6 +15,7 @@ const app = express();
 
 // middleware
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(helmet());
 app.use(morgan("common"));
 app.use(cors());
@@ -38,9 +40,8 @@ app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 
-// error handling for unknown routes
-app.use((req, res) => {
-  res.status(404).json({ message: "404 - Wronge Route" });
+app.all("*", (req, res) => {
+  res.status(405).json({ message: "Wrong Route" });
 });
 
 app.listen(port, () => {

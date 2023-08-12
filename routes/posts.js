@@ -41,7 +41,7 @@ router.delete("/:id", async (req, res) => {
 });
 
 // like a post
-router.put("/:id/like-dislike-post", async (req, res) => {
+router.put("/:id/like", async (req, res) => {
   try {
     const postId = req.params.id;
     const post = await Post.findById(postId);
@@ -59,13 +59,9 @@ router.put("/:id/like-dislike-post", async (req, res) => {
 });
 
 // get a post
-router.get("/", (req, res) => {
-  res.send("done");
-});
-
-// get all posts
-router.get("/all-posts", (req, res) => {
-  res.send("done");
+router.get("/:id", async (req, res) => {
+  const post = await Post.findById(req.params.id);
+  return res.status(200).json(post);
 });
 
 module.exports = router;
